@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+
+<header class="mb-4">
+  <h1 class="h2">Резюме</h1>
+  <p class="text-muted mb-0">Коротко про мене, освіту, навички, технології та досвід.</p>
+</header>
+
+<section class="row g-4 mb-4">
+  <div class="col-md-4">
+    <img src="{{ url_for('static', filename='images/me.png') }}" class="img-fluid rounded shadow-sm" alt="Фото" width = "300">
+  </div>
+  <div class="col-md-8">
+    <section class="mb-4">
+      <h2 class="h5">Про себе</h2>
+      <p>{{ about }}</p>
+    </section>
+
+    <section class="mb-4">
+      <h2 class="h5">Освіта</h2>
+      <ul class="list-group list-group-flush">
+        {% for ed in education %}
+        <li class="list-group-item px-0">
+          <strong>{{ ed.school }}</strong> — {{ ed.program }} ({{ ed.period }})
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
+</section>
+
+<section class="row g-4">
+  <div class="col-lg-6">
+    <section class="mb-4">
+      <h2 class="h5">Навички</h2>
+      <ul class="list-group list-group-flush">
+        {% for s in skills %}<li class="list-group-item px-0">{{ s }}</li>{% endfor %}
+      </ul>
+    </section>
+
+    <section class="mb-4">
+      <h2 class="h5">Технології</h2>
+      <div class="d-flex flex-wrap gap-2">
+        {% for t in technologies %}<span class="badge text-bg-secondary">{{ t }}</span>{% endfor %}
+      </div>
+    </section>
+  </div>
+
+  <div class="col-lg-6">
+    <section class="mb-4">
+      <h2 class="h5">Досвід / Проєкти</h2>
+      <div class="accordion" id="expAcc">
+        {% for item in experience %}
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="h{{ loop.index }}">
+            <button class="accordion-button {{ 'collapsed' if not loop.first }}" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#c{{ loop.index }}"
+                    aria-expanded="{{ 'true' if loop.first else 'false' }}"
+                    aria-controls="c{{ loop.index }}">
+              {{ item.role }} — {{ item.company }} ({{ item.period }})
+            </button>
+          </h2>
+          <div id="c{{ loop.index }}" class="accordion-collapse collapse {{ 'show' if loop.first }}"
+               aria-labelledby="h{{ loop.index }}" data-bs-parent="#expAcc">
+            <div class="accordion-body">
+              <ul class="mb-0">
+                {% for d in item.desc %}<li>{{ d }}</li>{% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</section>
+
+{% endblock %}

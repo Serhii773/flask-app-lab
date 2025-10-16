@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<header class="mb-4">
+  <h1 class="h2">Контакти</h1>
+  <p class="text-muted mb-0">Зв’яжіться зі мною через форму нижче.</p>
+</header>
+
+<div class="row">
+  <div class="col-12 col-lg-8">
+    <section class="mb-4">
+      <h2 class="h5 mb-3">Напишіть повідомлення</h2>
+      <form method="post" novalidate class="needs-validation">
+        <div class="mb-3">
+          <label for="name" class="form-label">Ім’я</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+          <div class="invalid-feedback">Вкажіть ім’я.</div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Електронна пошта</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+          <div class="invalid-feedback">Укажіть коректний email.</div>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Повідомлення</label>
+          <textarea class="form-control" id="message" name="message" rows="6" required></textarea>
+          <div class="invalid-feedback">Введіть текст повідомлення.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Надіслати</button>
+      </form>
+    </section>
+  </div>
+
+  <div class="col-12 col-lg-4">
+    <section class="mb-4">
+      <h2 class="h5 mb-3">Інші способи зв’язку</h2>
+      <ul class="list-unstyled mb-0">
+        <li class="mb-2"><strong>Email:</strong> notexistance@outlook.com</li>
+        <li class="mb-2"><strong>GitHub:</strong> github.com/Fsociety</li>
+        <li class="mb-2"><strong>Phone number:</strong> +1 (101) 783-2074</li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+
+:root { --brand: #0d6efd; }
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 { letter-spacing: 0.2px; }
+
+.navbar-brand img { object-fit: cover; }
+
+.card-img-top, img.img-fluid { object-fit: cover; }
+
+@media (max-width: 576px) {
+  .navbar-brand span { font-size: 0.95rem; }
+}
