@@ -21,6 +21,9 @@
         <li class="nav-item">
                <a class="nav-link {% if request.endpoint=='users.greetings' %}active{% endif %}"  href="{{ url_for('users.greetings', name='john') }}">Користувач John</a> |
         </li>
+        <li class="nav-item">
+               <a class="nav-link {% if request.endpoint=='products.list_products' %}active{% endif %}"  href="{{ url_for('products.list_products') }}">Продукти</a> |
+        </li>
       </ul>
     </div>
   </div>
