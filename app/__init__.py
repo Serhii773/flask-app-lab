@@ -1,6 +1,10 @@
 from flask import Flask
 
 app = Flask(__name__)
-app.secret_key = "super_long_demo_secret_key_change_me"
+app.config.from_pyfile("../config.py")
 
-from . import views
+from app import views
+
+from app.users import users_bp
+
+app.register_blueprint(users_bp)
