@@ -19,11 +19,26 @@
           <a class="nav-link {% if request.endpoint=='contacts' %}active{% endif %}" href="{{ url_for('contacts') }}">Контакти</a>
         </li>
         <li class="nav-item">
-               <a class="nav-link {% if request.endpoint=='users.greetings' %}active{% endif %}"  href="{{ url_for('users.greetings', name='john') }}">Користувач John</a> |
+          <a class="nav-link {% if request.endpoint=='users.greetings' %}active{% endif %}"
+             href="{{ url_for('users.greetings', name='john') }}">Користувач John</a>
         </li>
         <li class="nav-item">
-               <a class="nav-link {% if request.endpoint=='products.list_products' %}active{% endif %}"  href="{{ url_for('products.list_products') }}">Продукти</a> |
+          <a class="nav-link {% if request.endpoint=='products.list_products' %}active{% endif %}"
+             href="{{ url_for('products.list_products') }}">Продукти</a>
         </li>
+
+        {# --- login / profile --- #}
+        {% if session.get('user') %}
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint=='users.profile' %}active{% endif %}"
+               href="{{ url_for('users.profile') }}">Профіль</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint=='users.login' %}active{% endif %}"
+               href="{{ url_for('users.login') }}">Вхід</a>
+          </li>
+        {% endif %}
       </ul>
     </div>
   </div>
