@@ -1,4 +1,7 @@
+{# templates/contacts.html #}
 {% extends "base.html" %}
+{% from "_render_field.html" import render_field %}
+
 {% block content %}
 
 <header class="mb-4">
@@ -10,23 +13,23 @@
   <div class="col-12 col-lg-8">
     <section class="mb-4">
       <h2 class="h5 mb-3">Напишіть повідомлення</h2>
-      <form method="post" novalidate class="needs-validation">
-        <div class="mb-3">
-          <label for="name" class="form-label">Ім’я</label>
-          <input type="text" class="form-control" id="name" name="name" required>
-          <div class="invalid-feedback">Вкажіть ім’я.</div>
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Електронна пошта</label>
-          <input type="email" class="form-control" id="email" name="email" required>
-          <div class="invalid-feedback">Укажіть коректний email.</div>
-        </div>
-        <div class="mb-3">
-          <label for="message" class="form-label">Повідомлення</label>
-          <textarea class="form-control" id="message" name="message" rows="6" required></textarea>
-          <div class="invalid-feedback">Введіть текст повідомлення.</div>
-        </div>
-        <button type="submit" class="btn btn-primary">Надіслати</button>
+
+      <form method="post"
+            action="{{ url_for('contacts') }}"
+            novalidate
+            class="needs-validation">
+
+        {{ form.hidden_tag() }}
+
+        {{ render_field(form.name) }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.phone) }}
+        {{ render_field(form.subject) }}
+        {{ render_field(form.message) }}
+
+        <button type="submit" class="btn btn-primary">
+          {{ form.submit.label.text }}
+        </button>
       </form>
     </section>
   </div>

@@ -1,31 +1,25 @@
 {% extends "base.html" %}
+{% from "_render_field.html" import render_field %}
 
 {% block content %}
 <h1 class="mb-4">Вхід</h1>
 
-<form method="post" action="{{ url_for('users.login') }}">
-  <div class="mb-3">
-    <label for="username" class="form-label">Ім'я користувача</label>
-    <input
-      type="text"
-      class="form-control"
-      id="username"
-      name="username"
-      required
-    >
-  </div>
+<form method="post"
+      action="{{ url_for('users.login') }}"
+      novalidate>
 
-  <div class="mb-3">
-    <label for="password" class="form-label">Пароль</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password"
-      name="password"
-      required
-    >
-  </div>
+    {{ form.csrf_token }}
 
-  <button type="submit" class="btn btn-primary">Увійти</button>
+    {{ render_field(form.username) }}
+    {{ render_field(form.password) }}
+
+    <div class="form-check mb-3">
+        {{ form.remember(class="form-check-input", id="remember") }}
+        <label class="form-check-label" for="remember">
+            {{ form.remember.label.text }}
+        </label>
+    </div>
+
+    {{ form.submit(class="btn btn-primary") }}
 </form>
 {% endblock %}
