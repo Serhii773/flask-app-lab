@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Post {{ post.id }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>{{ post.title }}</h1>
+    <p class="text-muted">
+        Category: {{ post.category.value }} |
+        Posted: {{ post.posted.strftime('%Y-%m-%d %H:%M') }} |
+        Author: {{ post.author }}
+    </p>
+    <hr />
+    <p>{{ post.content }}</p>
+    <hr />
+    <a
+        href="{{ url_for('posts.update_post', post_id=post.id) }}"
+        class="btn btn-warning"
+    >
+        Edit
+    </a>
+    <a
+        href="{{ url_for('posts.delete_post', post_id=post.id) }}"
+        class="btn btn-danger"
+    >
+        Delete
+    </a>
+    <a href="{{ url_for('posts.list_posts') }}" class="btn btn-secondary">
+        Back to Posts
+    </a>
+</div>
+{% endblock %}

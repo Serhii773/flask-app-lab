@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Delete post{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Delete confirmation</h2>
+    <p>
+        Do you really want to delete this post?
+        <strong>"{{ post.title }}"</strong>?
+    </p>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <button type="submit" class="btn btn-danger">
+            Yes, delete
+        </button>
+        <a
+            href="{{ url_for('posts.view_post', post_id=post.id) }}"
+            class="btn btn-secondary"
+        >
+            Cancel
+        </a>
+    </form>
+</div>
+{% endblock %}

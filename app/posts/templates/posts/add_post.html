@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% from "macros/form_marcos.html" import render_field %}
+
+{% if action == 'update' %}
+    {% set page_title = 'Edit post' %}
+{% else %}
+    {% set page_title = 'Create new post' %}
+{% endif %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">{{ page_title }}</h1>
+
+<form method="post">
+    {{ form.hidden_tag() }}
+
+    {{ render_field(form.title) }}
+
+    {{ render_field(form.content) }}
+
+    {{ render_field(form.enabled) }}
+
+    {{ render_field(form.publish_date) }}
+
+    {{ render_field(form.category) }}
+
+    <button type="submit" class="btn btn-success">
+        {{ form.submit.label.text }}
+    </button>
+    <a href="{{ url_for('posts.list_posts') }}" class="btn btn-secondary ms-2">
+        Cancel
+    </a>
+</form>
+{% endblock %}
